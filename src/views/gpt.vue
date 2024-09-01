@@ -186,7 +186,7 @@ const settings = reactive<GPTSettings>({
 const chatListDom = ref<HTMLDivElement>();
 const roleAlias = { user: "ME", assistant: "WMapGPT", system: "System" };
 const message = useMessage();
-const baseMessage = [
+const baseMessage: ChatMessage[] = [
   {
     role: "system",
     content: "你是 ChatGPT，OpenAI 训练的大型语言模型，尽可能简洁地回答。",
@@ -231,6 +231,10 @@ const saveModel = () => {
 };
 
 const saveSettings = () => {
+  if (!settings.apiKey) {
+    alert("apikey不可为空");
+    return;
+  }
   if (client.saveSettings(settings.apiKey.trim(), settings.baseUrl.trim())) {
     isSettingsModalVisible.value = false;
   }

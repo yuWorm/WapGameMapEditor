@@ -190,7 +190,7 @@ function addToMap() {
   // 删除不存在的关联
   successMap.forEach((map) => {
     gameMap.ori.forEach((oriName) => {
-      const name: string = map[oriName];
+      const name = map[oriName];
       if (!name) {
         return;
       }

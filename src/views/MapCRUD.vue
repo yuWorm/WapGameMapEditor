@@ -44,8 +44,6 @@ const baseFormData: AddMapData = {
   bottom: "",
   left: "",
   right: "",
-  x: undefined,
-  y: undefined,
 };
 
 // 地图传来的方向是新地图的方向，关联就得是反的
@@ -95,7 +93,7 @@ function openAdd(name: string, ori: string | null) {
     ori: ori,
   });
   if (state.value.ori) {
-    form.value[oriResverMap[ori]] = state.value.name;
+    form.value[oriResverMap[state.value.ori]] = state.value.name;
   }
 }
 
@@ -135,8 +133,9 @@ function handleSubmit() {
       message.success("编辑地图成功");
       handleCancel();
     }
-  } catch (e: SubmitError) {
-    message.error(e.message);
+  } catch (e) {
+    const err = e as SubmitError;
+    message.error(err.message);
   }
 }
 

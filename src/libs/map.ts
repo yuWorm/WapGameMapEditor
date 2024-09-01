@@ -24,17 +24,23 @@ export interface BasicMapData {
   y: number;
 }
 
-export type AddMapDataBase = BasicMapData & {
-  x?: number | undefined;
-  y?: number | undefined;
-};
+export interface AddMapDataBase {
+  area?: string;
+  name: string;
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+  x?: number;
+  y?: number;
+}
 
 export interface MapData extends BasicMapData {
   [key: string]: string | number | undefined;
 }
 
 export interface AddMapData extends AddMapDataBase {
-  [key: string]: string | number | undefined;
+  [key: string]: string | number | undefined | null;
 }
 
 const oriNameMap: Record<string, string> = {
@@ -169,14 +175,17 @@ export class GameMap {
     if (this.positionsSet.has(`${map.x}-${map.y}`)) {
       return `${map?.name}::对应坐标地图已存在`;
     }
-
-    const newMap = { ...map };
-    this.maps.value.push(newMap);
-    this.mapNames[newMap.name] = newMap;
-    this.positionsSet.add(`${map.x}-${map.y}`);
-    if (generateLink) {
-      this.generateLink(newMap);
+    // 消除类型检测
+    if (map?.x && map?.y) {
+      const newMap: MapData = { ...map, x: map.x, y: map.y };
+      this.maps.value.push(newMap);
+      this.mapNames[newMap.name] = newMap;
+      this.positionsSet.add(`${map.x}-${map.y}`);
+      if (generateLink) {
+        this.generateLink(newMap);
+      }
     }
+
     return true;
   }
 

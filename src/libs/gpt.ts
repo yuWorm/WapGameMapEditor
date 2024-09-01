@@ -105,7 +105,7 @@ class ChatGPTClient {
     }
   }
 
-  public getModels(): GPTModelOptionsType[] {
+  public getModels(): GPTModelOptionsType[] | any {
     return gptModels;
   }
 

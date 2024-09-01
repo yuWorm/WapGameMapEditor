@@ -2,6 +2,10 @@
 
 一个简单wap游戏地图编辑器，支持接入gpt生成，主要为自己的游戏服务，有需要可以拉代码集成，或直接用线上版本生成。
 
+### Demo
+
+[点击前往](https://wmap.yux.cool/)
+
 ### 预览
 ![主页](img/preview.png)
 ![添加地图和连接](img/add_map_and_link.png)

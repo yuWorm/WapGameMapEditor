@@ -9,3 +9,4 @@ yarn-error.log
 pnpm-lock.yaml
 .idea
 .vscode
+.vercel

@@ -176,14 +176,13 @@ export class GameMap {
       return `${map?.name}::对应坐标地图已存在`;
     }
     // 消除类型检测
-    if (map?.x && map?.y) {
-      const newMap: MapData = { ...map, x: map.x, y: map.y };
-      this.maps.value.push(newMap);
-      this.mapNames[newMap.name] = newMap;
-      this.positionsSet.add(`${map.x}-${map.y}`);
-      if (generateLink) {
-        this.generateLink(newMap);
-      }
+
+    const newMap: any = { ...map, x: map.x, y: map.y };
+    this.maps.value.push(newMap);
+    this.mapNames[newMap.name] = newMap;
+    this.positionsSet.add(`${map.x}-${map.y}`);
+    if (generateLink) {
+      this.generateLink(newMap);
     }
 
     return true;
